@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karbi Anglong Run Fest 2026 | 75th Karbi Anglong Day Open Marathon</title>
+<style>
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --accent: #dc2626;
+  --text: #1e293b;
+  --muted: #64748b;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --border: #e2e8f0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+}
+/* Left vertical stripe: red, white, black */
+.stripe {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 18px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+.stripe span {
+  flex: 1;
+}
+.stripe .red { background: #dc2626; }
+.stripe .white { background: #ffffff; border-left: 1px solid #e5e5e5; }
+.stripe .black { background: #111827; }
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 40px 40px;
+}
+header.hero {
+  background: linear-gradient(135deg, #1e3a8a 0%, var(--primary) 50%, #3b82f6 100%);
+  color: white;
+  padding: 60px 20px 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+header.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+.hero-content { position: relative; z-index: 1; }
+.logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.logo-placeholder {
+  width: 90px;
+  height: 90px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  text-align: center;
+  padding: 8px;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+.tagline {
+  font-size: 1.3rem;
+  font-weight: 500;
+  opacity: 0.95;
+  margin-bottom: 6px;
+}
+.org {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+.hero-photo {
+  margin-top: 20px;
+  max-width: 180px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border: 3px solid white;
+}
+.section {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 28px;
+  margin: 24px 0;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+  border: 1px solid var(--border);
+}
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-group { display: flex; flex-direction: column; }
+.form-group.full { grid-column: 1 / -1; }
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  color: #334155;
+}
+input, select, textarea {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+  background: #fff;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+textarea { min-height: 80px; resize: vertical; }
+.btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn:hover { background: var(--primary-dark); }
+.btn:active { transform: scale(0.98); }
+.btn-secondary {
+  background: #64748b;
+}
+.btn-secondary:hover { background: #475569; }
+.btn-danger { background: #dc2626; }
+.btn-danger:hover { background: #b91c1c; }
+.actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.success-box {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+.reg-id {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 1px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
+th, td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+th { background: #f1f5f9; font-weight: 600; }
+.admin-login {
+  max-width: 400px;
+  margin: 0 auto;
+}
+.hidden { display: none; }
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.badge-men { background: #dbeafe; color: #1e40af; }
+.badge-women { background: #fce7f3; color: #9d174d; }
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+.modal {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  animation: modalIn 0.25s ease-out;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.9) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal h3 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: #065f46;
+}
+.modal.error h3 {
+  color: #991b1b;
+}
+.modal p {
+  margin-bottom: 16px;
+  color: #374151;
+}
+.modal .reg-id {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: 1px;
+  margin: 12px 0 20px;
+}
+.modal .actions {
+  justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .form-grid { grid-template-columns: 1fr; }
+  h1 { font-size: 1.8rem; }
+  .container { padding-left: 28px; }
+  .stripe { width: 12px; }
+}
+@media print {
+  .stripe, .no-print, header.hero, .actions, .admin-section { display: none !important; }
+  .section { box-shadow: none; border: 1px solid #ccc; }
+  body { background: white; }
+}
+</style>
+</head>
+<body>
+<div class="stripe">
+  <span class="red"></span>
+  <span class="white"></span>
+  <span class="black"></span>
+</div>
+
+<div class="container">
+  <header class="hero">
+    <div class="hero-content">
+      <div class="logos">
+        <div class="logo-placeholder">KAAC<br>Seal</div>
+        <div class="logo-placeholder">75 Years<br>Karbi Anglong<br>Day 2026</div>
+      </div>
+      <h1>Karbi Anglong Run Fest 2026</h1>
+      <p class="tagline">One Land. One Spirit. One Run.</p>
+      <p class="org">75th Karbi Anglong Day Open Marathon<br>Organised by Sports & Youth Welfare Department, KAAC</p>
+      <!-- Placeholder for official cutout photo -->
+      <div style="margin-top:20px;font-size:0.85rem;opacity:0.8;">Official representation in hero</div>
+    </div>
+  </header>
+
+  <div class="section" id="registrationSection">
+    <h2>📝 Registration Form</h2>
+    <form id="regForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" name="name" required placeholder="Enter full name">
+        </div>
+        <div class="form-group">
+          <label>Date of Birth *</label>
+          <input type="date" name="dob" required>
+        </div>
+        <div class="form-group">
+          <label>Gender *</label>
+          <select name="gender" required>
+            <option value="">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Category *</label>
+          <select name="category" required>
+            <option value="">Select</option>
+            <option value="Men’s Open">Men’s Open</option>
+            <option value="Women’s Open">Women’s Open</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" name="phone" required placeholder="10-digit mobile">
+        </div>
+        <div class="form-group">
+          <label>Blood Group</label>
+          <select name="bloodGroup">
+            <option value="">Select</option>
+            <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+            <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>T-shirt Size *</label>
+          <select name="tshirt" required>
+            <option value="">Select</option>
+            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Address *</label>
+          <textarea name="address" required placeholder="Full address"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Emergency Contact Name *</label>
+          <input type="text" name="emergencyName" required>
+        </div>
+        <div class="form-group">
+          <label>Emergency Contact Phone *</label>
+          <input type="tel" name="emergencyPhone" required>
+        </div>
+        <div class="form-group full">
+          <label>Medical Information / Allergies (if any)</label>
+          <textarea name="medical" placeholder="Any health conditions, allergies, or notes for the medical team"></textarea>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="submit" class="btn">Submit Registration</button>
+        <button type="button" class="btn btn-secondary no-print" onclick="document.getElementById('adminLogin').classList.remove('hidden'); document.getElementById('registrationSection').scrollIntoView({behavior:'smooth'});">Admin Panel</button>
+      </div>
+    </form>
+    <div id="confirmation" class="success-box hidden"></div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal-overlay hidden">
+    <div class="modal">
+      <h3>✅ Registration Successful!</h3>
+      <p>Your registration has been completed successfully.</p>
+      <p>Registration ID:</p>
+      <div class="reg-id" id="modalRegId"></div>
+      <p>Please save this ID. You can print a confirmation below.</p>
+      <div class="actions">
+        <button class="btn" onclick="printConfirmation()">Print Confirmation</button>
+        <button class="btn btn-secondary" onclick="closeSuccessModal()">Register Another</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div id="errorModal" class="modal-overlay hidden">
+    <div class="modal error">
+      <h3>❌ Registration Not Successful</h3>
+      <p id="errorMessage">Something went wrong. Please try again.</p>
+      <div class="actions">
+        <button class="btn" onclick="closeErrorModal()">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="adminLogin" class="section hidden">
+    <h2>🔐 Admin Access</h2>
+    <div class="admin-login">
+      <div class="form-group">
+        <label>Admin Password</label>
+        <input type="password" id="adminPass" placeholder="Enter password">
+      </div>
+      <div class="actions">
+        <button class="btn" onclick="checkAdmin()">Enter</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('adminLogin').classList.add('hidden')">Cancel</button>
+      </div>
+      <p style="margin-top:10px;font-size:0.85rem;color:var(--muted);">Demo password: <strong>kaac2026</strong></p>
+    </div>
+  </div>
+
+  <div id="adminPanel" class="section hidden admin-section">
+    <h2>📋 Registered Participants</h2>
+    <div class="actions">
+      <button class="btn" onclick="exportCSV()">Export to CSV</button>
+      <button class="btn btn-danger" onclick="clearAll()">Clear All Data</button>
+      <button class="btn btn-secondary" onclick="document.getElementById('adminPanel').classList.add('hidden')">Close</button>
+    </div>
+    <div id="regTable"></div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = "karbiAnglongRunFest2026";
+const ADMIN_PASS = "kaac2026";
+
+function loadRegistrations() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function saveRegistrations(data) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function generateRegId() {
+  const list = loadRegistrations();
+  const num = (list.length + 1).toString().padStart(4, "0");
+  return `KARF2026-${num}`;
+}
+
+document.getElementById("regForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  // Basic validation
+  const form = this;
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    showError("Please fill in all required fields correctly and try again.");
+    return;
+  }
+
+  const formData = new FormData(form);
+  const phone = formData.get("phone").trim();
+  const emergencyPhone = formData.get("emergencyPhone").trim();
+
+  if (phone.length < 10 || emergencyPhone.length < 10) {
+    showError("Please enter valid 10-digit phone numbers and try again.");
+    return;
+  }
+
+  const entry = {
+    id: generateRegId(),
+    timestamp: new Date().toISOString(),
+    name: formData.get("name").trim(),
+    dob: formData.get("dob"),
+    gender: formData.get("gender"),
+    category: formData.get("category"),
+    phone: phone,
+    bloodGroup: formData.get("bloodGroup") || "",
+    tshirt: formData.get("tshirt"),
+    address: formData.get("address").trim(),
+    emergencyName: formData.get("emergencyName").trim(),
+    emergencyPhone: emergencyPhone,
+    medical: formData.get("medical").trim() || ""
+  };
+
+  try {
+    const list = loadRegistrations();
+    list.push(entry);
+    saveRegistrations(list);
+
+    // Show success modal
+    document.getElementById("modalRegId").textContent = entry.id;
+    document.getElementById("successModal").classList.remove("hidden");
+
+    // Prepare print area (hidden)
+    const conf = document.getElementById("confirmation");
+    conf.innerHTML = `
+      <div id="printArea">
+        <h3 style="text-align:center; margin-bottom:8px;">Karbi Anglong Run Fest 2026</h3>
+        <p style="text-align:center; margin-bottom:16px;">75th Karbi Anglong Day Open Marathon<br>Registration Confirmation</p>
+        <p><strong>Registration ID:</strong> ${entry.id}</p>
+        <p><strong>Name:</strong> ${entry.name}</p>
+        <p><strong>Category:</strong> ${entry.category}</p>
+        <p><strong>Gender:</strong> ${entry.gender}</p>
+        <p><strong>DOB:</strong> ${entry.dob}</p>
+        <p><strong>Phone:</strong> ${entry.phone}</p>
+        <p><strong>T-shirt Size:</strong> ${entry.tshirt}</p>
+        <p><strong>Emergency Contact:</strong> ${entry.emergencyName} (${entry.emergencyPhone})</p>
+        <p style="margin-top:12px; font-size:0.85rem; color:#666;">Organised by Sports & Youth Welfare Department, KAAC<br>Tagline: One Land. One Spirit. One Run.</p>
+      </div>
+    `;
+  } catch (err) {
+    showError("Registration could not be saved. Please try again.");
+  }
+});
+
+function showError(message) {
+  document.getElementById("errorMessage").textContent = message;
+  document.getElementById("errorModal").classList.remove("hidden");
+}
+
+function closeSuccessModal() {
+  document.getElementById("successModal").classList.add("hidden");
+  document.getElementById("regForm").reset();
+}
+
+function closeErrorModal() {
+  document.getElementById("errorModal").classList.add("hidden");
+}
+
+function printConfirmation() {
+  const printContents = document.getElementById("printArea")?.innerHTML || "";
+  if (!printContents) {
+    alert("No confirmation available to print.");
+    return;
+  }
+  const win = window.open("", "", "width=800,height=600");
+  win.document.write(`
+    <html><head><title>Confirmation - Karbi Anglong Run Fest 2026</title>
+    <style>body{font-family:system-ui;padding:30px;line-height:1.5;} h3{text-align:center;}</style>
+    </head><body>${printContents}</body></html>
+  `);
+  win.document.close();
+  win.focus();
+  win.print();
+}
+
+function checkAdmin() {
+  const pass = document.getElementById("adminPass").value;
+  if (pass === ADMIN_PASS) {
+    document.getElementById("adminLogin").classList.add("hidden");
+    document.getElementById("adminPanel").classList.remove("hidden");
+    renderTable();
+  } else {
+    alert("Incorrect password");
+  }
+}
+
+function renderTable() {
+  const list = loadRegistrations();
+  const container = document.getElementById("regTable");
+  if (list.length === 0) {
+    container.innerHTML = "<p>No registrations yet.</p>";
+    return;
+  }
+  let html = `<table><thead><tr>
+    <th>ID</th><th>Name</th><th>Category</th><th>Phone</th><th>Gender</th><th>T-shirt</th><th>Date</th>
+  </tr></thead><tbody>`;
+  list.forEach(r => {
+    const badge = r.category.includes("Men") ? "badge-men" : "badge-women";
+    html += `<tr>
+      <td><strong>${r.id}</strong></td>
+      <td>${r.name}</td>
+      <td><span class="badge ${badge}">${r.category}</span></td>
+      <td>${r.phone}</td>
+      <td>${r.gender}</td>
+      <td>${r.tshirt}</td>
+      <td>${new Date(r.timestamp).toLocaleDateString()}</td>
+    </tr>`;
+  });
+  html += "</tbody></table>";
+  html += `<p style="margin-top:10px;color:var(--muted);">${list.length} participant(s) registered</p>`;
+  container.innerHTML = html;
+}
+
+function exportCSV() {
+  const list = loadRegistrations();
+  if (list.length === 0) {
+    alert("No data to export");
+    return;
+  }
+  const headers = ["Registration ID","Name","DOB","Gender","Category","Phone","Blood Group","T-shirt Size","Address","Emergency Name","Emergency Phone","Medical Info","Registered At"];
+  const rows = list.map(r => [
+    r.id, r.name, r.dob, r.gender, r.category, r.phone, r.bloodGroup, r.tshirt,
+    `"${(r.address||"").replace(/"/g,'""')}"`, r.emergencyName, r.emergencyPhone,
+    `"${(r.medical||"").replace(/"/g,'""')}"`, r.timestamp
+  ]);
+  let csv = headers.join(",") + "\n" + rows.map(row => row.join(",")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "Karbi_Anglong_Run_Fest_2026_Registrations.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function clearAll() {
+  if (confirm("Are you sure you want to delete all registrations? This cannot be undone.")) {
+    localStorage.removeItem(STORAGE_KEY);
+    renderTable();
+    alert("All data cleared.");
+  }
+}
+</script>
+</body>
+</html>
