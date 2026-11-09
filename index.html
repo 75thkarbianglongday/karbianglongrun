@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Karbi Anglong Run Fest 2026 | 75th Karbi Anglong Day Open Marathon</title>
+<title>Karbi Anglong Run Fest 2026 | 75th Karbi Anglong Day Half Marathon</title>
 <style>
 :root {
   --primary: #e11d48;
@@ -181,19 +181,16 @@ th { background: #f1f5f9; }
 
 <div class="container">
   <div class="top-bar">
-    <div class="org">Sports & Youth Welfare Department, KAAC<br>Government of Assam</div>
+    <div class="org">Sports & Youth Welfare Department, KAAC</div>
   </div>
 
   <header class="hero">
     <div class="logo-text">Karbi Anglong<br>Run Fest 2026</div>
-    <p class="tagline">One Land. One Spirit. One Run.</p>
-    <p style="margin-top:4px;font-size:0.95rem;color:#64748b;">75th Karbi Anglong Day Open Marathon</p>
+    <p class="tagline">One Hill. One Heart. One Run.</p>
+    <p style="margin-top:4px;font-size:0.95rem;color:#64748b;">75th Karbi Anglong Day Half Marathon</p>
     <div class="sports-row">
       <div class="sport-icon" style="background:#ef4444;">🏃</div>
-      <div class="sport-icon" style="background:#22c55e;">⚽</div>
-      <div class="sport-icon" style="background:#3b82f6;">🏐</div>
-      <div class="sport-icon" style="background:#f59e0b;">🚴</div>
-      <div class="sport-icon" style="background:#8b5cf6;">🏊</div>
+      <div class="sport-icon" style="background:#ec4899;">🏃‍♀️</div>
     </div>
   </header>
 
@@ -215,15 +212,14 @@ th { background: #f1f5f9; }
             <option value="">Select</option>
             <option>Male</option>
             <option>Female</option>
-            <option>Other</option>
           </select>
         </div>
         <div class="form-group">
           <label>Category *</label>
           <select name="category" required>
             <option value="">Select</option>
-            <option>Men’s Open</option>
-            <option>Women’s Open</option>
+            <option>Men's Half Marathon</option>
+            <option>Women's Half Marathon</option>
           </select>
         </div>
         <div class="form-group">
@@ -236,13 +232,6 @@ th { background: #f1f5f9; }
             <option value="">Select</option>
             <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
             <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>T-shirt Size *</label>
-          <select name="tshirt" required>
-            <option value="">Select</option>
-            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
           </select>
         </div>
         <div class="form-group full">
@@ -341,7 +330,6 @@ function hideSuccess() {
   modal.style.display = "none";
 }
 
-// Keep modal closed on page load
 window.addEventListener("load", function() {
   const modal = document.getElementById("successModal");
   if (modal) {
@@ -376,7 +364,6 @@ document.getElementById("regForm").addEventListener("submit", function(e) {
     category: fd.get("category"),
     phone: phone,
     bloodGroup: fd.get("bloodGroup") || "",
-    tshirt: fd.get("tshirt"),
     address: (fd.get("address") || "").trim(),
     emergencyName: (fd.get("emergencyName") || "").trim(),
     emergencyPhone: emergencyPhone,
@@ -390,16 +377,15 @@ document.getElementById("regForm").addEventListener("submit", function(e) {
 
     document.getElementById("printArea").innerHTML = `
       <h3 style="text-align:center;">Karbi Anglong Run Fest 2026</h3>
-      <p style="text-align:center;">75th Karbi Anglong Day Open Marathon<br>Registration Confirmation</p>
+      <p style="text-align:center;">75th Karbi Anglong Day Half Marathon<br>Registration Confirmation</p>
       <p><strong>Registration ID:</strong> ${entry.id}</p>
       <p><strong>Name:</strong> ${entry.name}</p>
       <p><strong>Category:</strong> ${entry.category}</p>
       <p><strong>Gender:</strong> ${entry.gender}</p>
       <p><strong>DOB:</strong> ${entry.dob}</p>
       <p><strong>Phone:</strong> ${entry.phone}</p>
-      <p><strong>T-shirt Size:</strong> ${entry.tshirt}</p>
       <p><strong>Emergency Contact:</strong> ${entry.emergencyName} (${entry.emergencyPhone})</p>
-      <p style="margin-top:12px;font-size:0.85rem;color:#666;">Organised by Sports & Youth Welfare Department, KAAC<br>One Land. One Spirit. One Run.</p>
+      <p style="margin-top:12px;font-size:0.85rem;color:#666;">Organised by Sports & Youth Welfare Department, KAAC<br>One Hill. One Heart. One Run.</p>
     `;
     showSuccess(entry.id);
   } catch (err) {
@@ -444,10 +430,10 @@ function renderTable() {
   const list = loadRegistrations();
   const el = document.getElementById("regTable");
   if (!list.length) { el.innerHTML = "<p>No registrations yet.</p>"; return; }
-  let html = "<table><thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Phone</th><th>Gender</th><th>T-shirt</th><th>Date</th></tr></thead><tbody>";
+  let html = "<table><thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Phone</th><th>Gender</th><th>Date</th></tr></thead><tbody>";
   list.forEach(r => {
     const badge = r.category.includes("Men") ? "badge-men" : "badge-women";
-    html += `<tr><td><strong>${r.id}</strong></td><td>${r.name}</td><td><span class="badge ${badge}">${r.category}</span></td><td>${r.phone}</td><td>${r.gender}</td><td>${r.tshirt}</td><td>${new Date(r.timestamp).toLocaleDateString()}</td></tr>`;
+    html += `<tr><td><strong>${r.id}</strong></td><td>${r.name}</td><td><span class="badge ${badge}">${r.category}</span></td><td>${r.phone}</td><td>${r.gender}</td><td>${new Date(r.timestamp).toLocaleDateString()}</td></tr>`;
   });
   html += "</tbody></table><p style='margin-top:8px;color:#64748b;'>" + list.length + " participant(s)</p>";
   el.innerHTML = html;
@@ -456,9 +442,9 @@ function renderTable() {
 document.getElementById("exportBtn").onclick = function() {
   const list = loadRegistrations();
   if (!list.length) { alert("No data to export"); return; }
-  const headers = ["Registration ID","Name","DOB","Gender","Category","Phone","Blood Group","T-shirt Size","Address","Emergency Name","Emergency Phone","Medical Info","Registered At"];
+  const headers = ["Registration ID","Name","DOB","Gender","Category","Phone","Blood Group","Address","Emergency Name","Emergency Phone","Medical Info","Registered At"];
   const rows = list.map(r => [
-    r.id, r.name, r.dob, r.gender, r.category, r.phone, r.bloodGroup, r.tshirt,
+    r.id, r.name, r.dob, r.gender, r.category, r.phone, r.bloodGroup,
     '"' + (r.address||"").replace(/"/g,'""') + '"', r.emergencyName, r.emergencyPhone,
     '"' + (r.medical||"").replace(/"/g,'""') + '"', r.timestamp
   ]);
