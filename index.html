@@ -343,8 +343,9 @@ function saveRegistrations(data) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 function generateRegId() {
-  const list = loadRegistrations();
-  return "KARF2026-" + String(list.length + 1).padStart(4, "0");
+  const t = Date.now().toString(36).toUpperCase().slice(-5);
+  const r = Math.floor(Math.random() * 1000).toString().padStart(3, "0");
+  return "KARF-" + t + r;
 }
 
 function showSuccess(id) {
